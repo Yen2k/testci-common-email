@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Build-Jdk-Spec: 17
-Specification-Title: Commons Email
-Specification-Version: 1.3
-Implementation-Title: Commons Email
-Implementation-Version: 1.3.2
-Created-By: Maven Integration for Eclipse
-
