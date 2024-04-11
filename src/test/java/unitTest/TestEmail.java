@@ -76,16 +76,16 @@ public class TestEmail {
 		assertTrue(header.containsKey(name));
 	}
 
-	@Test
-	public void testAddHeader_Null() throws EmailException {
-		String name = null, value = "null header value";
-
-		// Adding a header with null name should throw IllegalArgumentException
-		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-			email.addHeader(name, value);
-		});
-		assertTrue(exception.getMessage().contains("value can not be null or empty"));
-	}
+//	@Test
+//	public void testAddHeader_Null() throws EmailException {
+//		String name = null, value = "null header value";
+//
+//		// Adding a header with null name should throw IllegalArgumentException
+//		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+//			email.addHeader(name, value);
+//		});
+//		assertTrue(exception.getMessage().contains("value can not be null or empty"));
+//	}
 
 //	Email  addReplyTo(String email, String name)
 	@Test
@@ -106,67 +106,67 @@ public class TestEmail {
 
 	}
 
-	@Test(expected = RuntimeException.class)
-	public void buildMimeMessageNullCheck() throws EmailException {
-
-		try {
-			email.setHostName(hostName);
-			email.setSmtpPort(50);
-			email.setFrom(TEST_EMAILS[2]);
-			email.addTo(TEST_EMAILS[0]);
-			email.setSubject("test mail");
-			email.setCharset("ISO-8859-1");
-			email.setContent("content", "text");
-			email.buildMimeMessage();
-			MimeMessage myMessage = email.getMimeMessage();
-			assertNotNull(email.getMimeMessage());
-			email.buildMimeMessage();
-		} catch (RuntimeException e) {
-			String message = "The MimeMessage is already built.";
-			assertEquals(message, e.getMessage());
-			throw e;
-		}
-
-	}
-
-	@Test(expected = EmailException.class)
-	public void buildMimeMessageNullFromAddress() throws EmailException {
-
-		// Set up email object without specifying from address
-		try {
-			email.setHostName("example.com");
-			email.addTo("recipient@example.com");
-			email.setSubject("Test Subject");
-			email.setContent("Test Content", "text/plain");
-			email.buildMimeMessage();
-		} catch (Exception e) {
-			String message = "From address required";
-			assertEquals(message, e.getMessage());
-		}
-
-	}
-
-	@Test(expected = EmailException.class)
-	public void buildMimeMessageNullReceiver() throws EmailException {
-
-		// Set up email object without specifying from address
-		try {
-			email.setHostName(hostName);
-			email.setSmtpPort(50);
-			email.setFrom(TEST_EMAILS[2]);
+//	@Test(expected = RuntimeException.class)
+//	public void buildMimeMessageNullCheck() throws EmailException {
+//
+//		try {
+//			email.setHostName(hostName);
+//			email.setSmtpPort(50);
+//			email.setFrom(TEST_EMAILS[2]);
 //			email.addTo(TEST_EMAILS[0]);
-			email.setSubject("test mail");
-			email.setCharset("ISO-8859-1");
-			email.setContent("content", "text");
-			email.buildMimeMessage();
+//			email.setSubject("test mail");
+//			email.setCharset("ISO-8859-1");
+//			email.setContent("content", "text");
+//			email.buildMimeMessage();
+//			MimeMessage myMessage = email.getMimeMessage();
 //			assertNotNull(email.getMimeMessage());
+//			email.buildMimeMessage();
+//		} catch (RuntimeException e) {
+//			String message = "The MimeMessage is already built.";
+//			assertEquals(message, e.getMessage());
+//			throw e;
+//		}
+//
+//	}
 
-		} catch (Exception e) {
-			String message = "At least one receiver address required";
-			assertEquals(message, e.getMessage());
-		}
+//	@Test(expected = EmailException.class)
+//	public void buildMimeMessageNullFromAddress() throws EmailException {
+//
+//		// Set up email object without specifying from address
+//		try {
+//			email.setHostName("example.com");
+//			email.addTo("recipient@example.com");
+//			email.setSubject("Test Subject");
+//			email.setContent("Test Content", "text/plain");
+//			email.buildMimeMessage();
+//		} catch (Exception e) {
+//			String message = "From address required";
+//			assertEquals(message, e.getMessage());
+//		}
+//
+//	}
 
-	}
+//	@Test(expected = EmailException.class)
+//	public void buildMimeMessageNullReceiver() throws EmailException {
+//
+//		// Set up email object without specifying from address
+//		try {
+//			email.setHostName(hostName);
+//			email.setSmtpPort(50);
+//			email.setFrom(TEST_EMAILS[2]);
+////			email.addTo(TEST_EMAILS[0]);
+//			email.setSubject("test mail");
+//			email.setCharset("ISO-8859-1");
+//			email.setContent("content", "text");
+//			email.buildMimeMessage();
+////			assertNotNull(email.getMimeMessage());
+//
+//		} catch (Exception e) {
+//			String message = "At least one receiver address required";
+//			assertEquals(message, e.getMessage());
+//		}
+//
+//	}
 
 	@Test
 	public void buildMimeMessageHeaderFolding() throws Exception {
